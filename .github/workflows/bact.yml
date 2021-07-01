@@ -1,8 +1,17 @@
 name: Bahamut Anime Count Test
 on:
-  schedule:
-    - cron: "0 * * * *"
+  #  schedule:
+  #    - cron: "0 * * * *"
   workflow_dispatch:
+    inputs:
+      id:
+        description: "ID"
+        required: false
+        default: "15357"
+      count:
+        description: "次數"
+        required: false
+        default: "100"
 jobs:
   add:
     name: Test
@@ -20,4 +29,4 @@ jobs:
       - name: Install Packages
         run: npm install
       - name: Test
-        run: node index.js 0 500
+        run: node index.js ${{ github.event.inputs.id }} ${{ github.event.inputs.count }}
